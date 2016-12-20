@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class Lexer {
-	private List<Symbol> m_symbolTable;
+	private List<String> m_symbolTable;
 	private List<Token> m_tokenTable;
 
 	private int m_currentLine;
@@ -344,7 +344,9 @@ public class Lexer {
 	}
 
 	private void installId(String identifier) {
-		//System.out.println(identifier);
+		if (!m_symbolTable.contains(identifier)) {
+			m_symbolTable.add(identifier);
+		}
 	}
 
 	private boolean isReservedWord(String word) {
