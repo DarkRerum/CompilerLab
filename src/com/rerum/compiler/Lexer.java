@@ -133,7 +133,7 @@ public class Lexer {
 									break;
 								}
 
-								System.err.println("lexer.parseLine() state 0 received unexpected char: '" +
+								System.err.println("Line " + m_currentLine + ": unexpected char: '" +
 										currentChar + "'");
 								//System.exit(1);
 								break;

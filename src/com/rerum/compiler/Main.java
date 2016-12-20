@@ -14,8 +14,10 @@ public class Main {
 		File file = new File("tests/test1.pas");
 		lexer.processFile(file);
 		Token token = lexer.getNextToken();
+		TokenPrinter tp = new TokenPrinter();
 		while (token != null) {
-			System.out.println(token);
+			//System.out.println(token);
+			tp.println(token);
 			token = lexer.getNextToken();
 		}
 	}
