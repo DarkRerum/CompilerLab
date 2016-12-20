@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		//System.out.println("test");
 		Lexer lexer = new Lexer();
-		File file = new File("tests/test1.pas");
+		File file = new File("tests/test2.pas");
 		lexer.processFile(file);
 		Token token = lexer.getNextToken();
 		TokenPrinter tp = new TokenPrinter();
@@ -23,8 +23,4 @@ public class Main {
 		}
 	}
 
-	static void readFile() {
-
-
-	}
 }

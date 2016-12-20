@@ -302,30 +302,6 @@ public class Lexer {
 
 	}
 
-	private int processReservedWord(String word) {
-		if (word.matches("/^Var[^A-Za-z]/g")) {
-			m_tokenTable.add(new Token(TokenType.VAR, m_currentLine));
-			return 3;
-		}
-		if (word.matches("^Begin[^A-Za-z]")) {
-			m_tokenTable.add(new Token(TokenType.BEGIN, m_currentLine));
-			return 5;
-		}
-		if (word.matches("^End[^A-Za-z]")) {
-			m_tokenTable.add(new Token(TokenType.END, m_currentLine));
-			return 3;
-		}
-		if (word.matches("^REPEAT[^A-Za-z]")) {
-			m_tokenTable.add(new Token(TokenType.REPEAT, m_currentLine));
-			return 6;
-		}
-		if (word.matches("^UNTIL[^A-Za-z]")) {
-			m_tokenTable.add(new Token(TokenType.UNTIL, m_currentLine));
-			return 5;
-		}
-		return 0;
-	}
-
 	private boolean isLetter(char ch) {
 		if (ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z')
 			return true;
