@@ -19,6 +19,15 @@ public class Lexer {
 
 	private int m_tokenBeginPos = -1;
 
+	private List<String> m_reservedWords = new ArrayList<String>() {{
+			add("Var");
+			add("REPEAT");
+			add("UNTIL");
+			add("Begin");
+			add("End");
+			add("not");
+		}};
+
 	public Lexer() {
 		init();
 	}
@@ -213,10 +222,34 @@ public class Lexer {
 					case 13:
 						if (!isLetter(nextChar)) {
 							String identifier = line.substring(m_tokenBeginPos, currentCharPos+1);
-							installId(identifier);
-							m_tokenTable.add(new Token(TokenType.IDENTIFIER, identifier, m_currentLine));
+							if (!isReservedWord(identifier)) {
+								installId(identifier);
+								m_tokenTable.add(new Token(TokenType.IDENTIFIER, identifier, m_currentLine));
+							} else {
+								switch (identifier) {
+									case "Var":
+										m_tokenTable.add(new Token(TokenType.VAR, m_currentLine));
+										break;
+									case "REPEAT":
+										m_tokenTable.add(new Token(TokenType.REPEAT, m_currentLine));
+										break;
+									case "UNTIL":
+										m_tokenTable.add(new Token(TokenType.UNTIL, m_currentLine));
+										break;
+									case "Begin":
+										m_tokenTable.add(new Token(TokenType.BEGIN, m_currentLine));
+										break;
+									case "End":
+										m_tokenTable.add(new Token(TokenType.END, m_currentLine));
+										break;
+									case "not":
+										m_tokenTable.add(new Token(TokenType.NOT, m_currentLine));
+										break;
+								}
+							}
 							state = 0;
 							m_tokenBeginPos = -1;
+
 						}
 						currentCharPos++;
 						break;
@@ -303,5 +336,9 @@ public class Lexer {
 
 	private void installId(String identifier) {
 		//System.out.println(identifier);
+	}
+
+	private boolean isReservedWord(String word) {
+		return m_reservedWords.contains(word);
 	}
 }
