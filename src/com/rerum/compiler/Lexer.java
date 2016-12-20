@@ -115,6 +115,10 @@ public class Lexer {
 							case ',':
 								state = 19;
 								break;
+							case '(':
+							case ')':
+								state = 20;
+								break;
 							default:
 								if (isLetter(currentChar)) {
 									m_tokenBeginPos = currentCharPos;
@@ -281,6 +285,11 @@ public class Lexer {
 						break;
 					case 19:
 						m_tokenTable.add(new Token(TokenType.COMMA, m_currentLine));
+						currentCharPos++;
+						state = 0;
+						break;
+					case 20:
+						m_tokenTable.add(new Token(TokenType.BRACKET, currentChar, m_currentLine));
 						currentCharPos++;
 						state = 0;
 						break;

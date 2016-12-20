@@ -8,7 +8,7 @@ Begin
 	sum := 5;
 	*/
 
-	sum := not a / c + b;
+	sum := not (a / c) + b;
 	a := 50;
 	REPEAT
 		a := a + 9;
