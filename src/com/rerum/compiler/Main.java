@@ -15,6 +15,7 @@ public class Main {
 		lexer.processFile(file);
 		Token token = lexer.getNextToken();
 		TokenPrinter tp = new TokenPrinter();
+		tp.printHeader();
 		while (token != null) {
 			//System.out.println(token);
 			tp.println(token);
